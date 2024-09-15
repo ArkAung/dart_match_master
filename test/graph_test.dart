@@ -112,9 +112,11 @@ void main() {
       expect(graph.isBipartite(), isFalse);
     });
 
-    test('should throw ArgumentError for invalid vertices', () {
+    test('should add edge with new vertex', () {
       graph.addVertex(1);
-      expect(() => graph.addEdge(1, 2, 10), throwsArgumentError);
+      expect(() => graph.addEdge(1, 2, 10), returnsNormally);
+      expect(graph.vertices.containsKey(2), isTrue);
+      expect(graph.vertices[1]!.edges[graph.vertices[2]], equals(10));
     });
   });
 }
